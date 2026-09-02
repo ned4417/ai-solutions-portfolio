@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { Mail, Linkedin, ArrowUpRight } from "lucide-react";
+import { Mail, Linkedin, Github, ArrowUpRight } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const ContactSection = () => {
   const { ref, isVisible } = useScrollAnimation();
 
   const socialLinks = [
+    { icon: Github, label: "GitHub", href: "https://github.com/ned4417" },
     { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/eddie-tuell-9387b258" },
     { icon: Mail, label: "Email", href: "mailto:eddietuell@gmail.com" },
   ];
@@ -25,9 +26,9 @@ const ContactSection = () => {
             <span className="text-gradient">Amazing?</span>
           </h2>
           <p className="text-muted-foreground text-lg mb-10">
-            Whether you're looking to integrate AI into your systems,
-            need full-stack development expertise, or want to discuss innovative
-            technology solutions, I'd love to hear from you.
+            Whether you're exploring LLM orchestration for your own product, need someone
+            who's shipped AI features in a regulated environment, or just want to talk
+            healthcare tech, I'd love to hear from you.
           </p>
 
           <Button variant="hero" size="xl" className="mb-12" asChild>

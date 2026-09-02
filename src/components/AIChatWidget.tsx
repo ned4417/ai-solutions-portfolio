@@ -8,7 +8,7 @@ type Message = {
   content: string;
 };
 
-const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/resume-chat`;
+const CHAT_URL = "/api/resume-chat";
 
 const AIChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -125,7 +125,7 @@ const AIChatWidget = () => {
   };
 
   const suggestedQuestions = [
-    "What AI experience does Eddie have?",
+    "What is AI Core?",
     "Tell me about his healthcare projects",
     "What are his key technical skills?",
   ];

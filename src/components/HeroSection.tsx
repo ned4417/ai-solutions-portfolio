@@ -14,20 +14,26 @@ const HeroSection = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-8 animate-fade-up opacity-0">
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-mono text-primary">Senior Full Stack Engineer</span>
+            <span className="text-sm font-mono text-primary">AI Core Architect · CHAS Health</span>
           </div>
+
+          {/* Name */}
+          <p className="font-mono text-sm text-muted-foreground mb-4 animate-fade-up opacity-0">
+            Eddie Tuell
+          </p>
 
           {/* Main Heading */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-up opacity-0 stagger-1">
-            Hi, I'm{" "}
-            <span className="text-gradient">Eddie Tuell</span>
+            I build the AI infrastructure{" "}
+            <span className="text-gradient">clinicians can't work without</span>
           </h1>
 
           {/* Subtitle */}
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-up opacity-0 stagger-2">
-            Full-stack engineer building React frontends and Node.js/Python backends.
-            I create scalable web applications with AI integration
-            that automate workflows and boost team productivity.
+            Twelve years ago I was racking servers. Today I architect AI Core, the LLM
+            orchestration layer behind CHAS Health's clinical AI tools — the same work
+            that cut patient chart prep from an hour to a few minutes and just earned me
+            a promotion to Full Stack Software Engineer II.
           </p>
 
           {/* CTA Buttons */}
@@ -46,9 +52,9 @@ const HeroSection = () => {
           {/* Stats */}
           <div className="grid grid-cols-3 gap-8 mt-20 animate-fade-up opacity-0 stagger-4">
             {[
-              { value: "React + Python", label: "Full Stack" },
-              { value: "AI Integration", label: "OpenAI & LLMs" },
-              { value: "Ideas → Production", label: "Delivery" },
+              { value: "12+ Years", label: "Systems → Full-Stack → AI" },
+              { value: "~200 APIs", label: "Python & Node Microservices" },
+              { value: "Hour → Minutes", label: "Chart Prep Time" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
                 <div className="text-3xl md:text-4xl font-bold text-gradient mb-1">

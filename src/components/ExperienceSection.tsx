@@ -6,15 +6,27 @@ const ExperienceSection = () => {
 
   const experiences = [
     {
-      title: "Software Engineer",
+      title: "Full Stack Software Engineer II",
       company: "CHAS Health",
-      period: "2022 - Present",
-      description: "Full-stack development focused on healthcare automation, AI integration, and enterprise applications.",
+      period: "Aug 2026 - Present",
+      description: "Promoted after leading AI-integrated clinical application work end to end. Now scaling AI Core across more clinical applications and setting architecture standards for AI features in a regulated healthcare environment.",
       highlights: [
-        "Designed scalable APIs and microservices with Python & Node.js",
-        "Integrated OpenAI for clinical data analysis",
-        "Built React applications for healthcare workflows",
-        "Automated CI/CD pipelines with GitHub Actions",
+        "Expanding AI Core, the LLM orchestration service, to new clinical application teams",
+        "Setting architecture standards for AI features across a regulated healthcare environment",
+        "Mentor engineers on API design and production-quality practices",
+      ],
+    },
+    {
+      title: "Full Stack Software Engineer I",
+      company: "CHAS Health",
+      period: "2022 - Aug 2026",
+      description: "Full-stack development focused on healthcare automation and AI integration — the work that led to promotion.",
+      highlights: [
+        "Architected AI Core, an LLM orchestration service coordinating requests, context, and structured workflows across clinical applications",
+        "Built a document ingestion pipeline using Azure Document Intelligence (OCR) to turn scanned PDFs into structured, RAG-ready data",
+        "Led an AI-integrated clinical application that cut patient chart prep time from an hour to a few minutes",
+        "Built ~200 API endpoints across Python and Node.js microservices integrating Azure SQL, Snowflake, SharePoint, and EHR systems",
+        "Designed a custom scheduling engine with a rules system for 300–400 providers across 25 locations",
       ],
     },
     {

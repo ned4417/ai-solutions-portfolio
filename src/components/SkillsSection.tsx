@@ -1,3 +1,4 @@
+import { Brain, Code2, Monitor, Cloud, Database } from "lucide-react";
 import { useScrollAnimation, getStaggerDelay } from "@/hooks/useScrollAnimation";
 
 const SkillsSection = () => {
@@ -7,44 +8,39 @@ const SkillsSection = () => {
 
   const skillCategories = [
     {
-      title: "Full-Stack Development",
-      skills: [
-        { name: "TypeScript / JavaScript", level: 95 },
-        { name: "React (Vite, Tailwind)", level: 92 },
-        { name: "Node.js / Express", level: 90 },
-        { name: "Python (FastAPI)", level: 90 },
-        { name: "SQL Server / Snowflake", level: 88 },
-      ],
+      icon: Brain,
+      title: "AI/LLM",
+      description:
+        "Architected AI Core's LLM orchestration layer and a RAG pipeline that turns OCR'd clinical PDFs into structured data for a regulated healthcare app.",
+      tags: ["RAG", "Multi-Provider LLM", "Azure Document Intelligence", "Prompt Engineering"],
     },
     {
-      title: "Cloud & Infrastructure",
-      skills: [
-        { name: "Azure (App Service, SQL, AI)", level: 92 },
-        { name: "Docker / Containers", level: 88 },
-        { name: "GitHub Actions / CI/CD", level: 90 },
-        { name: "Ansible / Automation", level: 85 },
-        { name: "Azure Static Web Apps", level: 88 },
-      ],
+      icon: Code2,
+      title: "Backend",
+      description:
+        "Built ~200 production API endpoints across Python and Node.js microservices powering clinical workflows.",
+      tags: ["Python / FastAPI", "Node.js / Express", "REST API Design", "Microservices"],
     },
     {
-      title: "AI Integration",
-      skills: [
-        { name: "LLM Integration", level: 92 },
-        { name: "RAG Systems", level: 90 },
-        { name: "Vector Search & Embeddings", level: 88 },
-        { name: "Prompt Engineering", level: 92 },
-        { name: "Azure Document Intelligence", level: 85 },
-      ],
+      icon: Monitor,
+      title: "Frontend",
+      description:
+        "Built the React interfaces clinicians and staff actually use every day, from scheduling tools to AI-powered chart prep.",
+      tags: ["React", "TypeScript", "Vite", "Tailwind CSS"],
     },
     {
-      title: "Enterprise Integrations",
-      skills: [
-        { name: "REST API Design", level: 92 },
-        { name: "Microsoft Graph API", level: 88 },
-        { name: "OAuth 2.0 / SSO", level: 90 },
-        { name: "SharePoint Integration", level: 85 },
-        { name: "Chrome Extension Dev", level: 82 },
-      ],
+      icon: Cloud,
+      title: "Cloud/DevOps",
+      description:
+        "Deployed and automated delivery for every service above on Azure, with CI/CD pipelines that ship changes safely.",
+      tags: ["Azure App Service", "Azure Static Web Apps", "GitHub Actions", "Azure DevOps"],
+    },
+    {
+      icon: Database,
+      title: "Data",
+      description:
+        "Integrated clinical and business data across Azure SQL, Snowflake, SharePoint, and EHR systems into a single reliable source of truth.",
+      tags: ["Azure SQL", "Snowflake", "SharePoint", "EHR Systems"],
     },
   ];
 
@@ -65,39 +61,30 @@ const SkillsSection = () => {
             <span className="text-gradient">Trade</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Full-stack expertise across modern JavaScript/TypeScript, Python, and cloud-native technologies
+            AI orchestration and full-stack expertise across Python, TypeScript, and Azure's cloud-native stack
           </p>
         </div>
 
-        <div ref={skillsRef} className="grid lg:grid-cols-3 gap-8">
+        <div ref={skillsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category, index) => (
             <div
               key={category.title}
-              className={`p-6 rounded-2xl bg-card border border-border scroll-animate ${skillsVisible ? "visible" : ""}`}
+              className={`group p-6 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 scroll-animate-scale ${skillsVisible ? "visible" : ""}`}
               style={skillsVisible ? getStaggerDelay(index) : {}}
             >
-              <h3 className="text-lg font-semibold mb-6 text-gradient">
-                {category.title}
-              </h3>
-              <div className="space-y-5">
-                {category.skills.map((skill) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between mb-2">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <span className="text-sm font-mono text-muted-foreground">
-                        {skill.level}%
-                      </span>
-                    </div>
-                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-primary rounded-full transition-all duration-1000"
-                        style={{ 
-                          width: skillsVisible ? `${skill.level}%` : '0%',
-                          transitionDelay: `${index * 100 + 300}ms`
-                        }}
-                      />
-                    </div>
-                  </div>
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <category.icon className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="text-lg font-semibold mb-3">{category.title}</h3>
+              <p className="text-sm text-muted-foreground mb-4">{category.description}</p>
+              <div className="flex flex-wrap gap-2">
+                {category.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-1 text-xs font-mono bg-secondary rounded-full text-muted-foreground"
+                  >
+                    {tag}
+                  </span>
                 ))}
               </div>
             </div>
@@ -113,7 +100,7 @@ const SkillsSection = () => {
             Technologies I work with daily
           </p>
           <div className="flex flex-wrap justify-center gap-4 opacity-60">
-            {["React", "TypeScript", "Python", "Node.js", "REST APIs", "SQL", "Docker", "Azure", "OpenAI", "CI/CD", "FastAPI", "Cloud"].map(
+            {["React", "TypeScript", "Python", "Node.js", "Azure", "Snowflake", "RAG", "LLM Orchestration", "GitHub Actions", "Azure DevOps"].map(
               (tech) => (
                 <div
                   key={tech}
