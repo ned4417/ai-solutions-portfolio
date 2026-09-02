@@ -25,9 +25,9 @@ const ContactSection = () => {
             <span className="text-gradient">Amazing?</span>
           </h2>
           <p className="text-muted-foreground text-lg mb-10">
-            Whether you're looking to integrate AI into your systems,
-            need full-stack development expertise, or want to discuss innovative
-            technology solutions, I'd love to hear from you.
+            Whether you're exploring LLM orchestration for your own product, need someone
+            who's shipped AI features in a regulated environment, or just want to talk
+            healthcare tech, I'd love to hear from you.
           </p>
 
           <Button variant="hero" size="xl" className="mb-12" asChild>

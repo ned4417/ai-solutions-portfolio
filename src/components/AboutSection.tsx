@@ -7,24 +7,24 @@ const AboutSection = () => {
 
   const expertiseAreas = [
     {
-      icon: Code2,
-      title: "Full-Stack Development",
-      description: "React, TypeScript, Python, Node.js, REST APIs, SQL",
-    },
-    {
-      icon: Cloud,
-      title: "Cloud Architecture",
-      description: "Azure, Docker, CI/CD pipelines, containerization",
-    },
-    {
       icon: Brain,
-      title: "AI Integration",
-      description: "LLM/OpenAI integration, RAG systems, vector search, automation",
+      title: "AI/LLM Orchestration",
+      description: "RAG pipelines, multi-provider LLM integration, Azure Document Intelligence",
+    },
+    {
+      icon: Code2,
+      title: "Backend & APIs",
+      description: "Python, Node.js, ~200 production endpoints, microservices",
     },
     {
       icon: Shield,
-      title: "Enterprise Systems",
-      description: "Scalable APIs, data pipelines, SSO/OAuth, production systems",
+      title: "Healthcare Systems",
+      description: "EHR integration, Azure SQL, Snowflake, SharePoint",
+    },
+    {
+      icon: Cloud,
+      title: "Cloud & DevOps",
+      description: "Azure App Service, Static Web Apps, GitHub Actions, Azure DevOps",
     },
   ];
 
@@ -48,18 +48,23 @@ const AboutSection = () => {
             </h2>
             <div className="space-y-4 text-muted-foreground">
               <p>
-                Full-stack software engineer building enterprise applications.
-                I create scalable web applications, distributed systems,
-                and AI-powered solutions that automate workflows and boost productivity.
+                I'm a Full Stack Software Engineer II at CHAS Health, with 12+ years of
+                experience spanning systems engineering, full-stack development, and now
+                AI/backend engineering. I was promoted in August 2026 after leading our
+                first AI-integrated clinical application end to end.
               </p>
               <p>
-                I've architected production applications serving thousands of users,
-                including automation systems that save hundreds of hours monthly and AI-powered
-                document assistants that transformed how employees access company knowledge.
+                My current focus is <strong className="text-foreground">AI Core</strong> —
+                an internal service that orchestrates LLM requests, application context, and
+                structured AI workflows for clinical applications. I also built a document
+                ingestion pipeline that uses Azure Document Intelligence (OCR) to turn scanned
+                clinical PDFs into structured, LLM-ready data for RAG workflows.
               </p>
               <p>
-                I'm passionate about leveraging emerging AI technologies (LLMs, RAG patterns)
-                to create intuitive tools that help teams focus on what matters most.
+                Beyond AI work, I've shipped ~200 API endpoints across Python and Node.js
+                microservices, a custom scheduling engine serving 300–400 providers across
+                25 locations, and I mentor engineers on API design and production-quality
+                practices.
               </p>
             </div>
           </div>

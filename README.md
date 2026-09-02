@@ -1,73 +1,44 @@
-# Welcome to your Lovable project
+# Eddie Tuell — Portfolio
 
-## Project info
+Personal portfolio site for Eddie Tuell: Full Stack Software Engineer II at CHAS Health,
+focused on AI Core, an LLM orchestration service for clinical applications.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
-
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
+## Tech stack
 
 - Vite
 - TypeScript
 - React
 - shadcn-ui
 - Tailwind CSS
+- Supabase Edge Functions (AI resume chat widget, backed by the Anthropic API)
 
-## How can I deploy this project?
+## Local development
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+Requires Node.js & npm (recommend installing via [nvm](https://github.com/nvm-sh/nvm)).
 
-## Can I connect a custom domain to my Lovable project?
+```sh
+git clone <this-repo-url>
+cd ai-solutions-portfolio
+npm i
+npm run dev
+```
 
-Yes, you can!
+## Environment variables
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Create a `.env` file with your Supabase project's values:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```env
+VITE_SUPABASE_PROJECT_ID=your_project_id
+VITE_SUPABASE_PUBLISHABLE_KEY=your_publishable_key
+VITE_SUPABASE_URL=your_supabase_url
+```
+
+The AI resume chat widget (`src/components/AIChatWidget.tsx`) calls a Supabase Edge
+Function (`supabase/functions/resume-chat`) that proxies to the Anthropic API. That
+function needs an `ANTHROPIC_API_KEY` secret set in your Supabase project — it is not
+part of this `.env` file, since it's only ever read server-side by the Edge Function.
+
+## Deployment
+
+Deployed as a static site (build output in `dist/`) with the Supabase Edge Function
+deployed separately via the Supabase CLI.

@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import { useScrollAnimation, getStaggerDelay } from "@/hooks/useScrollAnimation";
 
 const ProjectsSection = () => {
@@ -6,6 +7,20 @@ const ProjectsSection = () => {
 
   const projects = [
     // Featured AI Solutions Projects (moved to top)
+    {
+      title: "AI Core: LLM Orchestration Platform",
+      description:
+        "Backend service architecting API and microservice patterns for AI features across clinical applications — orchestrating LLM requests, application context, and structured workflows in a regulated healthcare environment.",
+      tags: ["Python", "Node.js", "Azure App Service", "Multi-provider LLM", "Microservices"],
+      gradient: "from-primary/20 to-accent/20",
+    },
+    {
+      title: "Document Ingestion Pipeline",
+      description:
+        "OCR pipeline built on Azure Document Intelligence that turns scanned clinical PDFs into structured, LLM-ready data — the foundation for RAG workflows across AI Core.",
+      tags: ["Azure Document Intelligence", "OCR", "Python", "RAG"],
+      gradient: "from-accent/20 to-primary/20",
+    },
     {
       title: "AI Document Assistant",
       description:
@@ -16,7 +31,7 @@ const ProjectsSection = () => {
     {
       title: "Clinical Decision Support Platform",
       description:
-        "Browser extension and backend services for clinical staff providing AI-powered insights, discharge summaries, and care gap analysis integrated with EHR systems. Real-time streaming with OCR document processing.",
+        "AI-integrated clinical application that cut patient chart prep time from an hour to a few minutes — real-time streaming insights, discharge summaries, and care-gap analysis integrated with EHR systems.",
       tags: ["Node.js", "FastAPI", "Chrome Extension", "Azure Document Intelligence", "EHR API"],
       gradient: "from-accent/20 to-primary/20",
     },
@@ -35,10 +50,10 @@ const ProjectsSection = () => {
       gradient: "from-accent/20 to-primary/20",
     },
     {
-      title: "Appointment Scheduling Platform",
+      title: "Provider Scheduling Engine",
       description:
-        "Comprehensive scheduling application for healthcare navigators with EHR integration, provider scope validation, multi-system data aggregation, and complex scheduling rules for medical and dental appointments.",
-      tags: ["React", "Node.js", "EHR API", "Snowflake", "Google Maps API"],
+        "Custom scheduling engine with a rules system serving 300–400 providers across 25 locations — EHR integration, provider scope validation, and multi-system data aggregation for medical and dental appointments.",
+      tags: ["React", "Node.js", "EHR API", "Snowflake", "Rules Engine"],
       gradient: "from-primary/20 to-accent/20",
     },
     {
@@ -70,6 +85,15 @@ const ProjectsSection = () => {
       tags: ["Ansible", "Docker", "GitHub Actions", "Azure ACR", "Azure"],
       gradient: "from-accent/20 to-primary/20",
     },
+    // Personal Projects
+    {
+      title: "Grub Guide",
+      description:
+        "Restaurant-picker PWA that randomly selects a nearby spot by location and radius, with Claude-generated \"vibe\" descriptions, live open/closed status, and a cinematic photo carousel. Built solo, deployed on Vercel.",
+      tags: ["Personal Project", "React", "TypeScript", "Anthropic API", "Google Places API"],
+      gradient: "from-primary/20 to-accent/20",
+      link: "https://eats-picker.vercel.app/",
+    },
   ];
 
   return (
@@ -87,7 +111,7 @@ const ProjectsSection = () => {
             <span className="text-gradient">Impact</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Multiple production applications across healthcare, AI/ML, and business intelligence
+            Production AI and healthcare systems at CHAS Health, plus the occasional side project
           </p>
         </div>
 
@@ -118,6 +142,18 @@ const ProjectsSection = () => {
                     </span>
                   ))}
                 </div>
+
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 mt-4 text-xs font-mono text-primary hover:underline"
+                  >
+                    View Live
+                    <ArrowUpRight className="w-3 h-3" />
+                  </a>
+                )}
               </div>
             </div>
           ))}

@@ -125,7 +125,7 @@ const AIChatWidget = () => {
   };
 
   const suggestedQuestions = [
-    "What AI experience does Eddie have?",
+    "What is AI Core?",
     "Tell me about his healthcare projects",
     "What are his key technical skills?",
   ];

@@ -7,43 +7,46 @@ const SkillsSection = () => {
 
   const skillCategories = [
     {
-      title: "Full-Stack Development",
+      title: "AI/LLM",
       skills: [
-        { name: "TypeScript / JavaScript", level: 95 },
-        { name: "React (Vite, Tailwind)", level: 92 },
-        { name: "Node.js / Express", level: 90 },
-        { name: "Python (FastAPI)", level: 90 },
-        { name: "SQL Server / Snowflake", level: 88 },
-      ],
-    },
-    {
-      title: "Cloud & Infrastructure",
-      skills: [
-        { name: "Azure (App Service, SQL, AI)", level: 92 },
-        { name: "Docker / Containers", level: 88 },
-        { name: "GitHub Actions / CI/CD", level: 90 },
-        { name: "Ansible / Automation", level: 85 },
-        { name: "Azure Static Web Apps", level: 88 },
-      ],
-    },
-    {
-      title: "AI Integration",
-      skills: [
-        { name: "LLM Integration", level: 92 },
-        { name: "RAG Systems", level: 90 },
-        { name: "Vector Search & Embeddings", level: 88 },
-        { name: "Prompt Engineering", level: 92 },
+        { name: "RAG (Retrieval-Augmented Generation)", level: 90 },
+        { name: "Multi-Provider LLM Integration", level: 92 },
         { name: "Azure Document Intelligence", level: 85 },
+        { name: "Prompt Engineering & Orchestration", level: 92 },
       ],
     },
     {
-      title: "Enterprise Integrations",
+      title: "Backend",
       skills: [
+        { name: "Python (FastAPI)", level: 90 },
+        { name: "Node.js / Express", level: 90 },
         { name: "REST API Design", level: 92 },
-        { name: "Microsoft Graph API", level: 88 },
-        { name: "OAuth 2.0 / SSO", level: 90 },
-        { name: "SharePoint Integration", level: 85 },
-        { name: "Chrome Extension Dev", level: 82 },
+        { name: "Microservices Architecture", level: 90 },
+      ],
+    },
+    {
+      title: "Frontend",
+      skills: [
+        { name: "React (Vite, Tailwind)", level: 92 },
+        { name: "TypeScript", level: 95 },
+      ],
+    },
+    {
+      title: "Cloud/DevOps",
+      skills: [
+        { name: "Azure App Service", level: 92 },
+        { name: "Azure Static Web Apps", level: 88 },
+        { name: "GitHub Actions", level: 90 },
+        { name: "Azure DevOps", level: 85 },
+      ],
+    },
+    {
+      title: "Data",
+      skills: [
+        { name: "Azure SQL", level: 90 },
+        { name: "Snowflake", level: 88 },
+        { name: "SharePoint", level: 85 },
+        { name: "EHR Systems", level: 88 },
       ],
     },
   ];
@@ -65,7 +68,7 @@ const SkillsSection = () => {
             <span className="text-gradient">Trade</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Full-stack expertise across modern JavaScript/TypeScript, Python, and cloud-native technologies
+            AI orchestration and full-stack expertise across Python, TypeScript, and Azure's cloud-native stack
           </p>
         </div>
 
@@ -113,7 +116,7 @@ const SkillsSection = () => {
             Technologies I work with daily
           </p>
           <div className="flex flex-wrap justify-center gap-4 opacity-60">
-            {["React", "TypeScript", "Python", "Node.js", "REST APIs", "SQL", "Docker", "Azure", "OpenAI", "CI/CD", "FastAPI", "Cloud"].map(
+            {["React", "TypeScript", "Python", "Node.js", "Azure", "Snowflake", "RAG", "LLM Orchestration", "GitHub Actions", "Azure DevOps"].map(
               (tech) => (
                 <div
                   key={tech}
