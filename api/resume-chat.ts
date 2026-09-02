@@ -1,10 +1,6 @@
-// @ts-nocheck
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-};
+// Vercel Edge Function backing the AI Resume Assistant chat widget
+// (src/components/AIChatWidget.tsx). Runs at /api/resume-chat.
+export const config = { runtime: 'edge' };
 
 // Model used for the resume chat assistant. Swap here if you want a
 // different Claude model for this endpoint.
@@ -218,114 +214,113 @@ Technologies: React, TypeScript, Anthropic API, Google Places API, PWA
 Answer questions professionally and accurately based on this information. If asked about something not covered, politely indicate that information isn't available. Represent Eddie positively while being honest and factual.
 `;
 
-serve(async (req) => {
-  if (req.method === 'OPTIONS') {
-    return new Response(null, { headers: corsHeaders });
+export default async function handler(req: Request) {
+  if (req.method !== 'POST') {
+    return new Response(JSON.stringify({ error: 'Method not allowed' }), {
+      status: 405,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 
-  try {
-    const { messages } = await req.json();
-    const ANTHROPIC_API_KEY = Deno.env.get('ANTHROPIC_API_KEY');
-
-    if (!ANTHROPIC_API_KEY) {
-      throw new Error('ANTHROPIC_API_KEY is not configured');
-    }
-
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'x-api-key': ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: ANTHROPIC_MODEL,
-        max_tokens: 512,
-        system: RESUME_CONTEXT,
-        messages,
-        stream: true,
-      }),
+  const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+  if (!ANTHROPIC_API_KEY) {
+    return new Response(JSON.stringify({ error: 'AI not configured' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
     });
+  }
 
-    if (!response.ok) {
-      if (response.status === 429) {
-        return new Response(JSON.stringify({ error: 'Rate limit exceeded. Please try again later.' }), {
-          status: 429,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        });
-      }
-      if (response.status === 401 || response.status === 403) {
-        console.error('Anthropic API auth error:', response.status, await response.text());
-        return new Response(JSON.stringify({ error: 'AI service is not configured correctly' }), {
-          status: 500,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        });
-      }
-      const errorText = await response.text();
-      console.error('Anthropic API error:', response.status, errorText);
-      return new Response(JSON.stringify({ error: 'AI service error' }), {
-        status: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+  let messages;
+  try {
+    ({ messages } = await req.json());
+  } catch {
+    return new Response(JSON.stringify({ error: 'Invalid request body' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'x-api-key': ANTHROPIC_API_KEY,
+      'anthropic-version': '2023-06-01',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: ANTHROPIC_MODEL,
+      max_tokens: 512,
+      system: RESUME_CONTEXT,
+      messages,
+      stream: true,
+    }),
+  });
+
+  if (!response.ok) {
+    if (response.status === 429) {
+      return new Response(JSON.stringify({ error: 'Rate limit exceeded. Please try again later.' }), {
+        status: 429,
+        headers: { 'Content-Type': 'application/json' },
       });
     }
-
-    if (!response.body) throw new Error('No response body from Anthropic');
-
-    // Anthropic's streaming format (SSE events like `content_block_delta`)
-    // differs from the OpenAI-style `choices[0].delta.content` chunks the
-    // frontend chat widget parses. Translate one into the other here so the
-    // frontend doesn't need to know which provider is behind this endpoint.
-    const encoder = new TextEncoder();
-    const decoder = new TextDecoder();
-    const anthropicReader = response.body.getReader();
-
-    const stream = new ReadableStream({
-      async start(controller) {
-        let buffer = '';
-        try {
-          while (true) {
-            const { done, value } = await anthropicReader.read();
-            if (done) break;
-            buffer += decoder.decode(value, { stream: true });
-
-            let newlineIndex: number;
-            while ((newlineIndex = buffer.indexOf('\n')) !== -1) {
-              let line = buffer.slice(0, newlineIndex);
-              buffer = buffer.slice(newlineIndex + 1);
-              if (line.endsWith('\r')) line = line.slice(0, -1);
-
-              if (!line.startsWith('data: ')) continue;
-              const jsonStr = line.slice(6).trim();
-              if (!jsonStr) continue;
-
-              try {
-                const parsed = JSON.parse(jsonStr);
-                if (parsed.type === 'content_block_delta' && parsed.delta?.type === 'text_delta') {
-                  const chunk = { choices: [{ delta: { content: parsed.delta.text } }] };
-                  controller.enqueue(encoder.encode(`data: ${JSON.stringify(chunk)}\n\n`));
-                }
-              } catch {
-                // Ignore malformed/partial JSON lines from the SSE stream
-              }
-            }
-          }
-          controller.enqueue(encoder.encode('data: [DONE]\n\n'));
-        } catch (err) {
-          console.error('Stream translation error:', err);
-        } finally {
-          controller.close();
-        }
-      },
-    });
-
-    return new Response(stream, {
-      headers: { ...corsHeaders, 'Content-Type': 'text/event-stream' },
-    });
-  } catch (error) {
-    console.error('Resume chat error:', error);
-    return new Response(JSON.stringify({ error: error instanceof Error ? error.message : 'Unknown error' }), {
+    const errorText = await response.text();
+    console.error('Anthropic API error:', response.status, errorText);
+    return new Response(JSON.stringify({ error: 'AI service error' }), {
       status: 500,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
     });
   }
-});
+
+  if (!response.body) throw new Error('No response body from Anthropic');
+
+  // Anthropic's streaming format (SSE events like `content_block_delta`)
+  // differs from the OpenAI-style `choices[0].delta.content` chunks the
+  // frontend chat widget parses. Translate one into the other here so the
+  // frontend doesn't need to know which provider is behind this endpoint.
+  const encoder = new TextEncoder();
+  const decoder = new TextDecoder();
+  const anthropicReader = response.body.getReader();
+
+  const stream = new ReadableStream({
+    async start(controller) {
+      let buffer = '';
+      try {
+        while (true) {
+          const { done, value } = await anthropicReader.read();
+          if (done) break;
+          buffer += decoder.decode(value, { stream: true });
+
+          let newlineIndex: number;
+          while ((newlineIndex = buffer.indexOf('\n')) !== -1) {
+            let line = buffer.slice(0, newlineIndex);
+            buffer = buffer.slice(newlineIndex + 1);
+            if (line.endsWith('\r')) line = line.slice(0, -1);
+
+            if (!line.startsWith('data: ')) continue;
+            const jsonStr = line.slice(6).trim();
+            if (!jsonStr) continue;
+
+            try {
+              const parsed = JSON.parse(jsonStr);
+              if (parsed.type === 'content_block_delta' && parsed.delta?.type === 'text_delta') {
+                const chunk = { choices: [{ delta: { content: parsed.delta.text } }] };
+                controller.enqueue(encoder.encode(`data: ${JSON.stringify(chunk)}\n\n`));
+              }
+            } catch {
+              // Ignore malformed/partial JSON lines from the SSE stream
+            }
+          }
+        }
+        controller.enqueue(encoder.encode('data: [DONE]\n\n'));
+      } catch (err) {
+        console.error('Stream translation error:', err);
+      } finally {
+        controller.close();
+      }
+    },
+  });
+
+  return new Response(stream, {
+    headers: { 'Content-Type': 'text/event-stream' },
+  });
+}

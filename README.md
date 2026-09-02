@@ -10,35 +10,30 @@ focused on AI Core, an LLM orchestration service for clinical applications.
 - React
 - shadcn-ui
 - Tailwind CSS
-- Supabase Edge Functions (AI resume chat widget, backed by the Anthropic API)
+- Vercel Edge Function (AI resume chat widget, backed by the Anthropic API)
 
 ## Local development
 
-Requires Node.js & npm (recommend installing via [nvm](https://github.com/nvm-sh/nvm)).
+Requires Node.js & npm (recommend installing via [nvm](https://github.com/nvm-sh/nvm)), and the
+[Vercel CLI](https://vercel.com/docs/cli) if you want the `/api` route working locally.
 
 ```sh
 git clone <this-repo-url>
 cd ai-solutions-portfolio
 npm i
-npm run dev
+npm run dev        # frontend only — the AI chat widget's API call will 404
+vercel dev         # frontend + /api/resume-chat, for testing the chat widget locally
 ```
 
 ## Environment variables
 
-Create a `.env` file with your Supabase project's values:
-
-```env
-VITE_SUPABASE_PROJECT_ID=your_project_id
-VITE_SUPABASE_PUBLISHABLE_KEY=your_publishable_key
-VITE_SUPABASE_URL=your_supabase_url
-```
-
-The AI resume chat widget (`src/components/AIChatWidget.tsx`) calls a Supabase Edge
-Function (`supabase/functions/resume-chat`) that proxies to the Anthropic API. That
-function needs an `ANTHROPIC_API_KEY` secret set in your Supabase project — it is not
-part of this `.env` file, since it's only ever read server-side by the Edge Function.
+The AI resume chat widget (`src/components/AIChatWidget.tsx`) calls `api/resume-chat.ts`,
+a Vercel Edge Function that proxies to the Anthropic API. It needs an `ANTHROPIC_API_KEY`
+environment variable set in your Vercel project (Project Settings → Environment Variables).
+There's no frontend `.env` needed for this — the key is only ever read server-side by the
+Edge Function.
 
 ## Deployment
 
-Deployed as a static site (build output in `dist/`) with the Supabase Edge Function
-deployed separately via the Supabase CLI.
+Deployed on Vercel: the static site builds from `dist/`, and `api/resume-chat.ts` deploys
+automatically as a Vercel Edge Function alongside it.
