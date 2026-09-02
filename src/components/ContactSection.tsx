@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { Mail, Linkedin, ArrowUpRight } from "lucide-react";
+import { Mail, Linkedin, Github, ArrowUpRight } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const ContactSection = () => {
   const { ref, isVisible } = useScrollAnimation();
 
   const socialLinks = [
+    { icon: Github, label: "GitHub", href: "https://github.com/ned4417" },
     { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/eddie-tuell-9387b258" },
     { icon: Mail, label: "Email", href: "mailto:eddietuell@gmail.com" },
   ];
