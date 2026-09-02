@@ -34,7 +34,7 @@ Full Stack Software Engineer II at CHAS Health with 12+ years of experience span
 - Setting architecture standards for AI features across a regulated healthcare environment
 - Mentors engineers on API design and production-quality practices
 
-### Software Engineer | CHAS Health | Spokane, WA | 03/2022 - 08/2026
+### Full Stack Software Engineer I | CHAS Health | Spokane, WA | 03/2022 - 08/2026
 - Architected AI Core, an LLM orchestration service coordinating requests, application context, and structured workflows across clinical applications
 - Built a document ingestion pipeline using Azure Document Intelligence (OCR) to convert scanned clinical PDFs into structured, LLM-ready data for RAG workflows
 - Led an AI-integrated clinical application that cut patient chart prep time from an hour to a few minutes
