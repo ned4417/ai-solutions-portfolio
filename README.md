@@ -1,6 +1,6 @@
 # Eddie Tuell — Portfolio
 
-Personal portfolio site for Eddie Tuell: Full Stack Software Engineer II at CHAS Health,
+Personal portfolio site for Eddie Tuell: Senior Full Stack Software Engineer at CHAS Health,
 focused on AI Core, an LLM orchestration service for clinical applications.
 
 ## Tech stack
