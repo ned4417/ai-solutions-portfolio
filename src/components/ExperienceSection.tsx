@@ -6,15 +6,22 @@ const ExperienceSection = () => {
 
   const experiences = [
     {
-      title: "Full Stack Software Engineer II",
+      title: "Senior Full Stack Software Engineer",
       company: "CHAS Health",
-      period: "Aug 2026 - Present",
-      description: "Promoted after leading AI-integrated clinical application work end to end. Now scaling AI Core across more clinical applications and setting architecture standards for AI features in a regulated healthcare environment.",
+      period: "Sep 2026 - Present",
+      description: "Promoted again within a month of the prior promotion, on the strength of AI Core's continued rollout. Now scaling AI Core across more clinical applications and setting architecture standards for AI features in a regulated healthcare environment.",
       highlights: [
         "Expanding AI Core, the LLM orchestration service, to new clinical application teams",
         "Setting architecture standards for AI features across a regulated healthcare environment",
         "Mentor engineers on API design and production-quality practices",
       ],
+    },
+    {
+      title: "Full Stack Software Engineer II",
+      company: "CHAS Health",
+      period: "Aug 2026 - Sep 2026",
+      description: "Promoted after leading AI-integrated clinical application work end to end.",
+      highlights: [],
     },
     {
       title: "Full Stack Software Engineer I",

@@ -14,7 +14,7 @@ const HeroSection = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-8 animate-fade-up opacity-0">
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-mono text-primary">AI Core Architect · CHAS Health</span>
+            <span className="text-sm font-mono text-primary">Senior Full Stack Software Engineer · CHAS Health</span>
           </div>
 
           {/* Name */}
@@ -32,8 +32,8 @@ const HeroSection = () => {
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-up opacity-0 stagger-2">
             Twelve years ago I was racking servers. Today I architect AI Core, the LLM
             orchestration layer behind CHAS Health's clinical AI tools — the same work
-            that cut patient chart prep from an hour to a few minutes and just earned me
-            a promotion to Full Stack Software Engineer II.
+            that cut patient chart prep from an hour to a few minutes and earned me
+            back-to-back promotions, most recently to Senior Full Stack Software Engineer.
           </p>
 
           {/* CTA Buttons */}
