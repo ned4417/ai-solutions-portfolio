@@ -29,7 +29,7 @@ const ExperienceSection = () => {
     {
       title: "Full Stack Software Engineer I",
       company: "CHAS Health",
-      period: "2022 - Feb 2026",
+      period: "Feb 2022 - Feb 2026",
       description: "Full-stack development focused on healthcare automation and AI integration — the work that led to promotion.",
       highlights: [
         "Architected AI Core, an LLM orchestration service coordinating requests, context, and structured workflows across clinical applications",
