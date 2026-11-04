@@ -51,8 +51,8 @@ const AboutSection = () => {
                 I'm a Senior Full Stack Software Engineer at CHAS Health, with 12+ years of
                 experience spanning systems engineering, full-stack development, and now
                 AI/backend engineering. I was promoted twice in 2026 on the strength of that
-                work — to Full Stack Software Engineer II in August, then to Senior Full
-                Stack Software Engineer the following month.
+                work — to Full Stack Software Engineer II in February, then to Senior Full
+                Stack Software Engineer in September.
               </p>
               <p>
                 My current focus is <strong className="text-foreground">AI Core</strong> —
