@@ -32,8 +32,8 @@ const HeroSection = () => {
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-up opacity-0 stagger-2">
             Twelve years ago I was racking servers. Today I architect AI Core, the LLM
             orchestration layer behind CHAS Health's clinical AI tools — the same work
-            that cut patient chart prep from an hour to a few minutes and earned me
-            back-to-back promotions, most recently to Senior Full Stack Software Engineer.
+            that cut patient chart prep from an hour to a few minutes and earned me two
+            promotions in 2026, most recently to Senior Full Stack Software Engineer.
           </p>
 
           {/* CTA Buttons */}

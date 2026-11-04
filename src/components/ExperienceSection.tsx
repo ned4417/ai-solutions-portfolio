@@ -9,24 +9,27 @@ const ExperienceSection = () => {
       title: "Senior Full Stack Software Engineer",
       company: "CHAS Health",
       period: "Sep 2026 - Present",
-      description: "Promoted again within a month of the prior promotion, on the strength of AI Core's continued rollout. Now scaling AI Core across more clinical applications and setting architecture standards for AI features in a regulated healthcare environment.",
+      description: "Promoted again on the strength of AI Core's continued rollout. Now the primary architect setting AI feature standards across CHAS Health's clinical applications.",
       highlights: [
-        "Expanding AI Core, the LLM orchestration service, to new clinical application teams",
         "Setting architecture standards for AI features across a regulated healthcare environment",
         "Mentor engineers on API design and production-quality practices",
+        "Owns AI Core's roadmap across all clinical application teams",
       ],
     },
     {
       title: "Full Stack Software Engineer II",
       company: "CHAS Health",
-      period: "Aug 2026 - Sep 2026",
-      description: "Promoted after leading AI-integrated clinical application work end to end.",
-      highlights: [],
+      period: "Feb 2026 - Sep 2026",
+      description: "Promoted after leading AI-integrated clinical application work end to end. Expanded AI Core across additional clinical application teams.",
+      highlights: [
+        "Expanded AI Core, the LLM orchestration service, to new clinical application teams",
+        "Began mentoring engineers on API design and production-quality practices",
+      ],
     },
     {
       title: "Full Stack Software Engineer I",
       company: "CHAS Health",
-      period: "2022 - Aug 2026",
+      period: "Feb 2022 - Feb 2026",
       description: "Full-stack development focused on healthcare automation and AI integration — the work that led to promotion.",
       highlights: [
         "Architected AI Core, an LLM orchestration service coordinating requests, context, and structured workflows across clinical applications",
